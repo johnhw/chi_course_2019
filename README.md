@@ -9,7 +9,10 @@
 
 ## Notebooks
 
-* [/intro_to_bayesian_methods](/intro_to_bayesian_methods/bayesian_methods.ipynb) Introduction to Bayesian methods in HCI and Bayesian filtering to estimate state
+* [/01_intro_to_bayesian_methods](/1_intro_to_bayesian_methods/bayesian_methods.ipynb) Introduction to Bayesian methods in HCI and Bayesian filtering to estimate state
+* [/02_decoding_symbols](/2_decoding_symbols/decoding_symbols.ipynb)
+* [/03_bayesian_optimisation](/3_bayesian_optimisation/bayesian_optimisation.ipynb)
+* [/04_modeling_behavior](/4_modeling_behavior/modeling_behavior.ipynb)
     
 
 ## Local install instructions
