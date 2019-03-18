@@ -4,6 +4,8 @@
 # ACM SIGCHI 2019 Course on Computational Interaction with Bayesian Methods
 ### Nikola Banovic, Per Ola Kristensson, Antti Oulasvirta, John Williamson
 
+<img src="imgs/chi2019_logo.png">
+
 * 0900 - 1720 Wednesday 8 May 2019, Glasgow, UK
 
 [See the course website for full details](http://pokristensson.com/chicourse19/)
@@ -42,7 +44,17 @@ If you are not using `mybinder.org`, then you can download and install a local v
 
         git clone https://github.com/johnhw/chi_course_2019.git
 
-* At the terminal, create a new conda environment with `conda create -n chi-course-2019` and activate it `conda activate chi-course-2019`
+* At the terminal, create a new conda environment and activate it with
+
+        conda create -n chi-course-2019
+        conda activate chi-course-2019
+        
 * Enter the directory where you cloned the repo
-    * Install the prerequisites with `conda env export --no-builds -f environment.yml`
-    * Start the notebook server with `jupyter notebook` and then open `index.ipynb`
+* Install the prerequisites with 
+    
+        conda env export --no-builds -f environment.yml
+* Start the notebook server with 
+
+      jupyter notebook
+    
+* and then open `index.ipynb`
