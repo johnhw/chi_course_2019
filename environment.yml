@@ -1,0 +1,13 @@
+name: chi-course-2019
+channels:
+  - conda-forge
+dependencies:
+  - numpy
+  - scipy
+  - matplotlib
+  - seaborn
+  - tqdm
+  - pandas
+  - pfilter
+
+  
