@@ -40,15 +40,13 @@ def weighting(hypothesised, real):
 
     # position, speed weights
     # (note: these can be masked and therefore not contribute to the calculation)
-    weights = [2500.0, 10.0]
+    weights = [50.0, 10.0]
 
     # squared difference, weighted and exponentiated
     # this gives a similarity measure
     difference = ma.sum((hypothesised - real) ** 2 * weights, axis=1)
     weight = np.exp(-difference)
-    weight[hypothesised[:, 0] < -0.1] = 0.0
-    weight[hypothesised[:, 0] > 1.1] = 0.0
-
+    
     return weight
 
 

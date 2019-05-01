@@ -85,11 +85,12 @@ class SliderDemo(object):
         self.particles = slider_filter.prior(self.n_particles)
         # self.canvas.root.config(cursor='none')
         self.show_particles = args.particles
-
+        self.sampling_intermittency = args.sampling
         self.last_x = None
         self.last_t = time.time()
         self.dx = 0
         self.x = 0
+        self.position_noise = 0.03
 
     def quit(self, src):
         return
@@ -99,7 +100,8 @@ class SliderDemo(object):
         pass
 
     def update_filter(self):
-        observation = [self.x if self.observed else np.nan, np.abs(self.dx)]
+        observation = [self.observed_x  if self.observed else np.nan, 
+        np.abs(self.dx)]
         observation = ma.masked_invalid(observation)
         self.particles, self.weights = slider_filter.filter_step(
             self.particles, observed=observation, dt=self.dt, prior_rate=0.00005
@@ -120,7 +122,8 @@ class SliderDemo(object):
         self.last_x = self.x
         self.last_t = t
         self.dt = dt
-        self.observed = np.random.uniform(0, 1) < 0.05
+        self.observed_x = self.x + np.random.normal(0, self.position_noise)
+        self.observed = np.random.uniform(0, 1) < self.sampling_intermittency
 
     def draw(self, src):
         screen_x = src.mouse_x
@@ -187,11 +190,9 @@ class SliderDemo(object):
             )
 
         if self.observed:
-            src.line(screen_x, 0, screen_x, self.slider_height, fill="white", width=5)
-            src.line(
-                screen_x + 5, 0, screen_x + 5, self.slider_height, fill="black", width=5
-            )
-
+            observed = self.observed_x * self.screen_size
+            src.line(observed, 0, observed, self.slider_height, fill="white", width=5)
+            
 
 def create_slider():
     boxes = [
@@ -202,6 +203,7 @@ def create_slider():
 
     parser = argparse.ArgumentParser(description="Slider demo")
     parser.add_argument("--particles", action="store_true")
+    parser.add_argument("--sampling", type=float, default=0.1)
 
     args = parser.parse_args()
     print(args)
