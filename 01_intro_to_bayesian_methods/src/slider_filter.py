@@ -44,10 +44,12 @@ def weighting(hypothesised, real):
 
     # squared difference, weighted and exponentiated
     # this gives a similarity measure
-    difference = ma.sum((hypothesised - real) ** 2 * weights, axis=1)
+    difference = np.nansum((hypothesised - real) ** 2 * weights, axis=1)
     weight = np.exp(-difference)
     
-    return weight
+    weight[hypothesised[:,0]<0] = 0.0
+    weight[hypothesised[:,0]>1] = 0.0
+    return weight + 1e-6
 
 
 def filter_step(particles, observed, dt=0.01, prior_rate=0.05):
@@ -72,6 +74,11 @@ def filter_step(particles, observed, dt=0.01, prior_rate=0.05):
 
     weights = weighting(observation(new_particles), observed)  # weighting
     normalised_weights = weights / np.sum(weights)  # normalise weights
+
+    n_eff = (1.0 / np.sum(normalised_weights ** 2)) / len(particles)
+    
+    
+
     new_particles = new_particles[pfilter.resample(normalised_weights)]  # resampling
 
     return new_particles, normalised_weights
@@ -86,3 +93,4 @@ def variance_position(particles, weights):
     ex_pos = expected_position(particles, weights)
     sqr_dif = (ex_pos - particles) ** 2
     return np.sum((sqr_dif.T * weights.T).T, axis=0)
+

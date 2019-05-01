@@ -102,11 +102,12 @@ class SliderDemo(object):
             h=self.slider_height,
         )
 
-        self.gilbert = Gilbert(0.3, 0.3)
+        self.gilbert = Gilbert(0.5, 0.3)
         self.n_particles = 200
         self.particles = slider_filter.prior(self.n_particles)
         # self.canvas.root.config(cursor='none')
         self.show_particles = args.particles
+        self.show_block = args.block
         self.sampling_intermittency = args.sampling
         self.last_x = None
         self.last_t = time.time()
@@ -124,11 +125,11 @@ class SliderDemo(object):
     def update_filter(self):
         observation = [self.observed_x  if self.observed else np.nan, 
         np.abs(self.dx)]
-        observation = ma.masked_invalid(observation)
+        
         self.particles, self.weights = slider_filter.filter_step(
             self.particles, observed=observation, dt=self.dt, prior_rate=0.00005
         )
-        self.weights = self.weights.filled(0)
+        
 
     def update_state(self, screen_x):
         t = time.time()
@@ -165,7 +166,7 @@ class SliderDemo(object):
             screen_left = box.left * self.screen_size
             screen_right = box.right * self.screen_size
             # show fading boxes if in particle mode
-            if self.show_particles:
+            if self.show_particles or self.show_block:
                 scaled_color = colorscale(box.color, box_w)
                 src.rectangle(
                     screen_left,
@@ -185,6 +186,31 @@ class SliderDemo(object):
                     outline=box.color,
                 )
 
+
+        expected_pos = slider_filter.expected_position(self.particles, self.weights)
+        expected_var = slider_filter.variance_position(self.particles, self.weights)
+        screen_expected = expected_pos[0] * self.screen_size
+        
+        
+        screen_left_var = (expected_pos[0] - np.sqrt(expected_var[0])) * self.screen_size
+        screen_right_var = (expected_pos[0] + np.sqrt(expected_var[0])) * self.screen_size
+
+        if self.show_block:
+
+            for std, height,stipple in [(0.5, 0.75, 'gray50'), (1, 0.5, 'gray25'), (2, 0.25, 'gray25')]:
+                left = (expected_pos[0] - np.sqrt(expected_var[0]) * std) * self.screen_size
+                right = (expected_pos[0] + np.sqrt(expected_var[0]) * std) * self.screen_size
+                top =  (0.5 - 0.5 * height) * self.slider_height
+                bottom = (0.5 + 0.5 * height) * self.slider_height
+                
+                src.rectangle(
+                    left, top, right, bottom,
+                    fill="blue",
+                    stipple=stipple,
+                    width=0                
+                )
+
+
         if self.show_particles:
             for particle, w in zip(self.particles, self.weights):
                 x = particle[0] * self.screen_size
@@ -192,32 +218,29 @@ class SliderDemo(object):
                 w = w if np.isfinite(w) else 0
                 src.circle(x, self.slider_height // 2, np.sqrt(w) * 20 + 1, fill="grey")
 
-            expected_pos = slider_filter.expected_position(self.particles, self.weights)
-            expected_var = slider_filter.variance_position(self.particles, self.weights)
-
+            
             src.circle(
-                expected_pos[0] * self.screen_size,
+                screen_expected,
                 self.slider_height // 2,
                 5,
                 fill="blue",
             )
             src.line(
-                expected_pos[0] * self.screen_size,
+                screen_expected,
                 0,
-                expected_pos[0] * self.screen_size,
+                screen_expected,
                 self.slider_height,
                 fill="cyan",
                 width=2,
             )
 
-            left_var = (expected_pos[0] - np.sqrt(expected_var[0])) * self.screen_size
-            right_var = (expected_pos[0] + np.sqrt(expected_var[0])) * self.screen_size
+
             src.line(
-                left_var, 0.25*self.slider_height, left_var, 0.75*self.slider_height,
+                screen_left_var, 0.25*self.slider_height, screen_left_var, 0.75*self.slider_height,
                 fill="blue"
             )
             src.line(
-                right_var, 0.25*self.slider_height, right_var, 0.75*self.slider_height,
+                screen_right_var, 0.25*self.slider_height, screen_right_var, 0.75*self.slider_height,
                 fill="blue"
             )
 
@@ -236,6 +259,7 @@ def create_slider():
 
     parser = argparse.ArgumentParser(description="Slider demo")
     parser.add_argument("--particles", action="store_true")
+    parser.add_argument("--block", action="store_true")
     parser.add_argument("--sampling", type=float, default=0.1)
 
     args = parser.parse_args()
