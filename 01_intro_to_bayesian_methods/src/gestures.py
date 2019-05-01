@@ -90,7 +90,7 @@ def interactive_recogniser(dynamics, observation, prior, weight, gestures):
                                     n_particles=400,                                    
                                     dynamics_fn=dynamics,
                                     weight_fn=weight,                    
-                                    resample_proportion=0.1)
+                                    resample_proportion=0.05)
     recogniser = Recogniser(pf, gestures)
     return recogniser
    
@@ -169,7 +169,7 @@ def record_gestures():
     gesture = Gesture(400,400)
     
     
-##### default filter settings
+##### default filter settings (copied from notebook directly)
 
 def linear_transform(xys, angle=0.0, scale=1.0, translate=(0,0)):
     """Takes a an n x 2 array of point `xys` and returns the 2D points transformed by
@@ -198,7 +198,7 @@ def gesture_prior(n):
     # dummy code: choose a random class and set all other variables to 1.0
     return np.stack([
         np.random.randint(0,6,size=n), 
-        np.random.normal(1.0,0.25,size=n), 
+        1.0*np.exp(np.random.normal(0.0,0.1,size=n)), 
         np.random.uniform(-200,400,size=n), 
         np.random.uniform(-200,400,size=n),
         np.random.normal(0.0, 10.0, size=n), 
@@ -212,7 +212,7 @@ def gesture_dynamics(prev_states):
     next_states = np.array(prev_states)
     
     #              class, scale, x,   y,   rotation, phase, velocity
-    noise_vector = [0.0,  0.01, 1.0, 1.0, 2.5,      3.0,   0.002] 
+    noise_vector = [0.0,  0.03, 1, 1, 0.5,      3.0,   0.002] 
     # add noise
     next_states += np.random.normal(0, 1, next_states.shape) * noise_vector
     # integrate velocity
