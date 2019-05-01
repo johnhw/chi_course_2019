@@ -7,6 +7,26 @@ import time
 import slider_filter
 import sys
 
+class Gilbert(object):
+    """implementS a Gilbert Markov chain, which can switch between two states. Simulates
+    bursty behaviour."""    
+    def __init__(self, p1, p2):
+        self.p1 = p1
+        self.p2 = p2
+        self.state = 0        
+    
+    def update(self, dt):
+        # account for sampling rate              
+        p1 = 1-((1-self.p1)**(dt))
+        p2 = 1-((1-self.p2)**(dt))
+        
+        if self.state==0:            
+            if np.random.random()<p1:
+                self.state = 1
+        if self.state==1:            
+            if np.random.random()<p2:
+                self.state = 0
+        return self.state
 
 class Box:
     def __init__(self, name, left, right, prior, color):
@@ -81,6 +101,8 @@ class SliderDemo(object):
             w=self.screen_size,
             h=self.slider_height,
         )
+
+        self.gilbert = Gilbert(0.3, 0.3)
         self.n_particles = 200
         self.particles = slider_filter.prior(self.n_particles)
         # self.canvas.root.config(cursor='none')
@@ -119,11 +141,17 @@ class SliderDemo(object):
         else:
             dt = 1 / 60.0
 
+        self.gilbert.update(dt)
+
         self.last_x = self.x
         self.last_t = t
         self.dt = dt
         self.observed_x = self.x + np.random.normal(0, self.position_noise)
-        self.observed = np.random.uniform(0, 1) < self.sampling_intermittency
+
+        if self.gilbert.state==0:
+            self.observed = np.random.uniform(0, 1) < 0.9
+        else:
+            self.observed = np.random.uniform(0, 1) < self.sampling_intermittency
 
     def draw(self, src):
         screen_x = src.mouse_x
@@ -178,16 +206,21 @@ class SliderDemo(object):
                 0,
                 expected_pos[0] * self.screen_size,
                 self.slider_height,
-                fill="blue",
+                fill="cyan",
+                width=2,
             )
 
+            left_var = (expected_pos[0] - np.sqrt(expected_var[0])) * self.screen_size
+            right_var = (expected_pos[0] + np.sqrt(expected_var[0])) * self.screen_size
             src.line(
-                (expected_pos[0] - np.sqrt(expected_var[0])) * self.screen_size,
-                self.slider_height // 2,
-                (expected_pos[0] + np.sqrt(expected_var[0])) * self.screen_size,
-                self.slider_height // 2,
-                fill="blue",
+                left_var, 0.25*self.slider_height, left_var, 0.75*self.slider_height,
+                fill="blue"
             )
+            src.line(
+                right_var, 0.25*self.slider_height, right_var, 0.75*self.slider_height,
+                fill="blue"
+            )
+
 
         if self.observed:
             observed = self.observed_x * self.screen_size
