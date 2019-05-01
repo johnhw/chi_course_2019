@@ -3,33 +3,39 @@ import numpy as np
 # return a new function that has the heat kernel (given by delta) applied.
 def make_heat_adjusted(sigma):
     def heat_distance(d):
-        return np.exp(-d**2 / (2.0*sigma**2))
+        return np.exp(-d ** 2 / (2.0 * sigma ** 2))
+
     return heat_distance
 
-# resample function from http://scipy-cookbook.readthedocs.io/items/ParticleFilter.html    
+
+# resample function from http://scipy-cookbook.readthedocs.io/items/ParticleFilter.html
 def resample(weights):
-  n = len(weights)
-  indices = []
-  C = [0.] + [np.sum(weights[:i+1]) for i in range(n)]
-  u0, j = np.random.random(), 0
-  for u in [(u0+i)/n for i in range(n)]:
-    while u > C[j]:
-      j+=1
-    indices.append(j-1)
-  return indices    
-  
+    n = len(weights)
+    indices = []
+    C = [0.0] + [np.sum(weights[: i + 1]) for i in range(n)]
+    u0, j = np.random.random(), 0
+    for u in [(u0 + i) / n for i in range(n)]:
+        while u > C[j]:
+            j += 1
+        indices.append(j - 1)
+    return indices
+
+
 def no_dynamics(x):
     return x
-    
+
+
 def no_noise(x):
     return x
-    
-def squared_error(x,y,sigma=1):
+
+
+def squared_error(x, y, sigma=1):
     # RBF kernel
-    d = np.sum((x-y)**2, axis=(1,2))
-    return np.exp(-d / (2.0*sigma**2))
-    
-def gaussian_noise(x, sigmas):    
+    d = np.sum((x - y) ** 2, axis=(1, 2))
+    return np.exp(-d / (2.0 * sigma ** 2))
+
+
+def gaussian_noise(x, sigmas):
     """Apply normally-distributed noise to the N,D array x.
     Parameters:
     -----------
@@ -39,7 +45,8 @@ def gaussian_noise(x, sigmas):
             D-element vector of std. dev. for each column of x
     """
     n = np.random.normal(np.zeros(len(sigmas)), sigmas, size=(x.shape[0], len(sigmas)))
-    return x+n
+    return x + n
+
 
 class ParticleFilter(object):
     """A particle filter object which maintains the internal state of a population of particles, and can
@@ -65,9 +72,19 @@ class ParticleFilter(object):
     weights : array
         N-element vector of normalized weights for each particle.
     """
-    
-    def __init__(self, initial,  observe_fn, n_particles=200, dynamics_fn=None, noise_fn=None, 
-                weight_fn=None,  resample_proportion=0.05, column_names=None, internal_weight_fn=None):
+
+    def __init__(
+        self,
+        initial,
+        observe_fn,
+        n_particles=200,
+        dynamics_fn=None,
+        noise_fn=None,
+        weight_fn=None,
+        resample_proportion=0.05,
+        column_names=None,
+        internal_weight_fn=None,
+    ):
         """
         
         Parameters:
@@ -114,7 +131,7 @@ class ParticleFilter(object):
         self.internal_weight_fn = internal_weight_fn
         self.init_filter()
         self.original_particles = np.array(self.particles)
-        
+
     def init_filter(self, mask=None):
         """Initialise the filter by drawing samples from the prior.
         
@@ -129,9 +146,8 @@ class ParticleFilter(object):
         if mask is None:
             self.particles = new_sample
         else:
-            self.particles[mask,:] = new_sample[mask,:]
-        
-    
+            self.particles[mask, :] = new_sample[mask, :]
+
     def update(self, observed=None):
         """Update the state of the particle filter given an observation.
         
@@ -143,43 +159,46 @@ class ParticleFilter(object):
             input from the sensor observing the process (e.g. a camera image in optical tracking).
             If None, then the observation step is skipped, and the filter will run one step in prediction-only mode.
         """
-        
+
         # apply dynamics and noise
         self.particles = self.dynamics_fn(self.particles)
         self.particles = self.noise_fn(self.particles)
         # invert to hypothesise observations
-        self.hypotheses = self.observe_fn(self.particles)             
-        
+        self.hypotheses = self.observe_fn(self.particles)
+
         if observed is not None and not np.any(np.isnan(observed)):
             # compute similarity to observations
-            # force to be positive                         
-            weights = np.clip(np.array(self.weight_fn(self.hypotheses, observed)), 0, np.inf)                   
+            # force to be positive
+            weights = np.clip(
+                np.array(self.weight_fn(self.hypotheses, observed)), 0, np.inf
+            )
         else:
             # we have no observation, so all particles weighted the same
             weights = np.ones((self.n_particles,))
-       
+
         # apply weighting based on the internal state
         if self.internal_weight_fn is not None:
-            internal_weights = self.internal_weight_fn(self.particles, observed)            
-            internal_weights = np.clip(internal_weights, 0, np.inf)        
+            internal_weights = self.internal_weight_fn(self.particles, observed)
+            internal_weights = np.clip(internal_weights, 0, np.inf)
             internal_weights = internal_weights / np.sum(internal_weights)
             weights *= internal_weights
-            
+
         # normalise probabilities to "probabilities"
         self.weights = weights / np.sum(weights)
-                      
+
         # resampling step
         indices = resample(self.weights)
         self.particles = self.particles[indices, :]
-        
-        
+
         # mean hypothesis
         self.mean_hypothesis = np.sum(self.hypotheses.T * self.weights, axis=-1).T
         self.mean_state = np.sum(self.particles.T * self.weights, axis=-1).T
         self.map = self.particles[np.argmax(self.weights)]
         self.original_particles = np.array(self.particles)
         # randomly resample some particles from the prior
-        random_mask = np.random.random(size=(self.n_particles,))<self.resample_proportion
+        random_mask = (
+            np.random.random(size=(self.n_particles,)) < self.resample_proportion
+        )
         self.resampled_particles = random_mask
         self.init_filter(mask=random_mask)
-        
+
