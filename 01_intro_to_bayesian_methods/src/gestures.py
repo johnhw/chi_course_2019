@@ -10,6 +10,7 @@ class Recogniser(object):
     def __init__(self, pfilter, gestures): 
         self.screen_size = 500
         c = TKanvas(draw_fn=self.draw, event_fn=self.event, quit_fn=self.quit, w=self.screen_size, h=self.screen_size)     
+        self.canvas = c
         self.mouse = [0,0] # position of the mouse
         self.pfilter = pfilter
         self.pfilter.init_filter()
@@ -91,6 +92,7 @@ def interactive_recogniser(dynamics, observation, prior, weight, gestures):
                                     weight_fn=weight,                    
                                     resample_proportion=0.1)
     recogniser = Recogniser(pf, gestures)
+    return recogniser
    
     
     
@@ -167,5 +169,76 @@ def record_gestures():
     gesture = Gesture(400,400)
     
     
-        
+##### default filter settings
+
+def linear_transform(xys, angle=0.0, scale=1.0, translate=(0,0)):
+    """Takes a an n x 2 array of point `xys` and returns the 2D points transformed by
+    rotating by `angle` (degrees)
+    scaling by `scale` (proportional 1.0=no change, 0.5=half, etc.)
+    translating by `translate` ((x,y) offset)"""
+    ca, sa = np.cos(np.radians(angle)), np.sin(np.radians(angle))
+    rot = np.array([[ca, -sa], 
+                    [sa, ca]])
+    return np.dot(xys, rot)*scale + np.array(translate)
     
+
+def gesture_observation(state):
+    # given an n x d matrix of n particle samples
+    # return a n x 2 matrix of expected x,y, positions for that gesture model    
+  
+    transformed = [linear_transform(g.get_template(s[0], s[5]), scale=s[1], angle=0, 
+                                      translate=[s[2], s[3]]) for s in state]                 
+                     
+    return np.array(transformed)
+
+
+def gesture_prior(n):
+    # return an n x d matrix with columns [i, s, x_c, y_c, \theta, \phi, \phi_dot] as an initial guess
+    # these should call a function draw a value from a distribution
+    # dummy code: choose a random class and set all other variables to 1.0
+    return np.stack([
+        np.random.randint(0,6,size=n), 
+        np.random.normal(1.0,0.25,size=n), 
+        np.random.uniform(-200,400,size=n), 
+        np.random.uniform(-200,400,size=n),
+        np.random.normal(0.0, 10.0, size=n), 
+        np.random.normal(0.0, 10, size=n), 
+        np.random.normal(1.0, 0.03, size=n)]).T
+
+
+def gesture_dynamics(prev_states):
+    # take an n x d array of particle samples
+    # return an n x d array representing the next states    
+    next_states = np.array(prev_states)
+    
+    #              class, scale, x,   y,   rotation, phase, velocity
+    noise_vector = [0.0,  0.01, 1.0, 1.0, 2.5,      3.0,   0.002] 
+    # add noise
+    next_states += np.random.normal(0, 1, next_states.shape) * noise_vector
+    # integrate velocity
+    next_states[:,5] += next_states[:,6]
+            
+    return next_states
+
+
+def gesture_weight(hypothesized, true):
+    # take a 2D observation (x,y)
+    # and an n x 2 matrix of observation samples (returned from gesture_observation())
+    # return the weight for each, representing how similar they are
+    gesture_beta = 180.0          # the RBF width
+    
+    # RBF similarity function       
+    w = np.exp(-np.sum((hypothesized-true)**2, axis=1)/(0.5*gesture_beta**2))
+    return w
+
+
+    
+if __name__=="__main__":
+    g = GestureData("../data/gestures.txt")
+    recogniser = interactive_recogniser(
+        dynamics=gesture_dynamics,
+        observation=gesture_observation,
+        prior=gesture_prior,
+        weight=gesture_weight,
+        gestures=g.gestures)
+    recogniser.canvas.root.mainloop()

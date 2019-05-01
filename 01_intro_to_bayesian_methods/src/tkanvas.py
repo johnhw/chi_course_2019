@@ -38,8 +38,7 @@ class TKanvas(object):
             try:
                 self.quit_fn(self)
             except:
-                print("Error in quit routine; exiting anyway")
-                
+                print("Error in quit routine; exiting anyway")                
         self.root.destroy()
                 
     def clear(self):
