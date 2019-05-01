@@ -1,7 +1,7 @@
 name: chi-course-2019
 channels:
   - conda-forge
-  - kgullison
+  - kgullikson
 dependencies:
   - numpy
   - scipy
