@@ -1,5 +1,5 @@
 
-[![Binder](http://mybinder.org/badge_logo.svg)](http://beta.mybinder.org/v2/gh/johnhw/chi_course_2019?filepath=index.ipynb)
+[![Binder](http://mybinder.org/badge_logo.svg)](http://beta.mybinder.org/v2/gh/johnhw/chi_course_2019/master)
 
 # ACM SIGCHI 2019 Course on Computational Interaction with Bayesian Methods
 ### Nikola Banovic, Per Ola Kristensson, Antti Oulasvirta, John Williamson
@@ -12,12 +12,12 @@
 
 ----
 
-## [Launch the notebooks on Binder](http://beta.mybinder.org/v2/gh/johnhw/chi_course_2019?filepath=index.ipynb)
+## [Launch the notebooks on Binder](http://beta.mybinder.org/v2/gh/johnhw/chi_course_2019/master)
 
 
 ## Notebooks
 
-* 0900-1020 [01_intro_to_bayesian_methods/](/1_intro_to_bayesian_methods/bayesian_methods.ipynb) Introduction to Bayesian methods in HCI and Bayesian filtering to estimate state
+* 0900-1020 [01_intro_to_bayesian_methods/](/1_intro_to_bayesian_methods/Introduction_to_Bayesian_Methods_in_HCI.ipynb) Introduction to Bayesian methods in HCI and Bayesian filtering to estimate state
 * 1100-1220 [02_decoding_symbols/](/2_decoding_symbols/decoding_symbols.ipynb)
 * 1400-1520 [03_bayesian_optimisation/](/3_bayesian_optimisation/bayesian_optimisation.ipynb)
 * 1600-1720 [04_modeling_behavior/](/4_modeling_behavior/modeling_behavior.ipynb)
