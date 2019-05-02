@@ -90,7 +90,7 @@ def interactive_recogniser(dynamics, observation, prior, weight, gestures):
                                     n_particles=400,                                    
                                     dynamics_fn=dynamics,
                                     weight_fn=weight,                    
-                                    resample_proportion=0.05)
+                                    resample_proportion=0.1)
     recogniser = Recogniser(pf, gestures)
     return recogniser
    
@@ -105,7 +105,7 @@ class GestureData(object):
         self.n_gestures = len(self.gestures)
         
     def get_template(self, i, t):
-        if 0<i<self.n_gestures:
+        if 0<=i<self.n_gestures:
             gesture = self.gestures[int(i)]
             t = np.floor(np.clip(t,0,len(gesture)-1))
        
