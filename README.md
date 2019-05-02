@@ -4,7 +4,7 @@
 # ACM SIGCHI 2019 Course on Computational Interaction with Bayesian Methods
 ### Nikola Banovic, Per Ola Kristensson, Antti Oulasvirta, John Williamson
 
-<img src="imgs/chi2019_logo.png">
+<img src="imgs/chi2019_logo_final.png">
 
 * 0900 - 1720 Wednesday 8 May 2019, Glasgow, UK
 
