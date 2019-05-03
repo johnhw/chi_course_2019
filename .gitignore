@@ -7,6 +7,8 @@ __pycache__/
 # C extensions
 *.so
 
+.todo
+
 # Distribution / packaging
 .Python
 build/
