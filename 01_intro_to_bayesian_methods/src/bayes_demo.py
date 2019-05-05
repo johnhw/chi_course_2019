@@ -14,7 +14,7 @@ def redraw_figure(fig):
     IPython.display.display(fig)
     
 def prior_posterior(prior_mean=0, prior_std=1, ev_std=0.5, n=10, anim=False):
-    # initial configurateion
+    # initial configuration
     mean = prior_mean
     std = prior_std
     var = std*std
