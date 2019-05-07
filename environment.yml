@@ -12,4 +12,5 @@ dependencies:
   - gpy
   - gpyopt
   - scikit-learn
+  - gym
   
