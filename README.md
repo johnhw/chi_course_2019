@@ -18,10 +18,10 @@
 
 ## Notebooks
 
-* 0900-1020 [01_intro_to_bayesian_methods/](/1_intro_to_bayesian_methods/Introduction_to_Bayesian_Methods_in_HCI.ipynb) Introduction to Bayesian methods in HCI and Bayesian filtering to estimate state
-* 1100-1220 [02_decoding_symbols/](/2_decoding_symbols/decoding_symbols.ipynb)
-* 1400-1520 [03_bayesian_optimisation/](/3_bayesian_optimisation/bayesian_optimisation.ipynb)
-* 1600-1720 [04_modeling_behavior/](/4_modeling_behavior/modeling_behavior.ipynb)
+* 0900-1020 [01_intro_to_bayesian_methods/](01_intro_to_bayesian_methods/Introduction_to_Bayesian_Methods_in_HCI.ipynb) Introduction to Bayesian methods in HCI and Bayesian filtering to estimate state
+* 1100-1220 [02_decoding_symbols/](02_decoding_symbols/decoding_symbols.ipynb)
+* 1400-1520 [03_bayesian_optimisation/](03_bayesian_optimisation/Introduction_to_Bayesian_Optimization_CHI2019.ipynb)
+* 1600-1720 [04_modeling_behavior/](04_modeling_behavior/modeling_behavior.ipynb)
     
 ## Topic
 The course focuses on optimization and inference and on applying these techniques to concrete HCI problems. The course will specifically look at Bayesian methods for solving decoding, adaptation, learning and optimization problems in HCI. The lectures center on hands-on Python programming interleaved with theory and practical examples grounded in problems of wide interest in human-computer interaction.
