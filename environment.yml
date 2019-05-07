@@ -3,6 +3,7 @@ channels:
   - conda-forge
   - kgullikson
 dependencies:
+  - python=3.6
   - numpy
   - scipy
   - matplotlib
@@ -10,4 +11,10 @@ dependencies:
   - tqdm
   - pandas
   - scikit-learn
+  - pip
+  - pip:
+    - gpy
+    - gpyopt
+    - gym
+    
   
