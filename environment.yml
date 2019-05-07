@@ -4,7 +4,7 @@ channels:
   - kgullikson
 dependencies:
   - python=3.6
-  - numpy
+  - numpy=1.15.4
   - scipy
   - matplotlib
   - seaborn
@@ -16,5 +16,5 @@ dependencies:
     - gpy
     - gpyopt
     - gym
-    
+
   
