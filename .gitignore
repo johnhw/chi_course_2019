@@ -7,7 +7,6 @@ __pycache__/
 # C extensions
 *.so
 
-*/captured_data/slider_*
 
 .todo
 
