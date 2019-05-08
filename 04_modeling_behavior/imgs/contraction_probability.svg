@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg8"
+   inkscape:version="0.92.4 (5da689c313, 2019-01-14)"
+   sodipodi:docname="contraction_probability.svg">
+  <defs
+     id="defs2">
+    <filter
+       inkscape:collect="always"
+       style="color-interpolation-filters:sRGB"
+       id="filter4553"
+       x="-0.25546127"
+       width="1.5109225"
+       y="-0.21181545"
+       height="1.4236309">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="2.804269"
+         id="feGaussianBlur4555" />
+    </filter>
+    <symbol
+       id="RightArrow">
+      <title
+         id="title5922">Right Arrow</title>
+      <path
+         inkscape:connector-curvature="0"
+         d="m 16.66875,9.525 -5.820833,5.820833 H 6.8791667 L 11.1125,11.1125 H 2.6458333 V 7.9375 H 11.1125 L 6.8791667,3.7041667 h 3.9687503 z"
+         style="stroke:none;stroke-width:0.26458332"
+         id="path5924" />
+    </symbol>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.98994949"
+     inkscape:cx="328.17553"
+     inkscape:cy="643.8894"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="2560"
+     inkscape:window-height="1377"
+     inkscape:window-x="1912"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       id="rect3713"
+       width="51.80492"
+       height="51.80492"
+       x="15.629181"
+       y="57.711601"
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.72055852;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <rect
+       style="fill:#c83737;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect4529"
+       width="7.5595236"
+       height="7.9375"
+       x="22.867559"
+       y="73.427086" />
+    <ellipse
+       style="fill:#329c37;fill-opacity:0.78894472;stroke:none;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;filter:url(#filter4553)"
+       id="path4535"
+       cx="65.448662"
+       cy="59.792397"
+       rx="12.473214"
+       ry="16.441963"
+       transform="rotate(23.289914)" />
+    <g
+       id="g4579"
+       transform="translate(35.907738)">
+      <rect
+         id="rect3715"
+         width="51.80492"
+         height="51.80492"
+         x="80.337181"
+         y="57.711601"
+         style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.72055852;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <rect
+         style="fill:#c83737;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="rect4531"
+         width="7.5595236"
+         height="7.9375"
+         x="88.068451"
+         y="73.427086" />
+      <ellipse
+         style="fill:#329c37;fill-opacity:0.78894474;stroke:none;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;filter:url(#filter4553)"
+         id="ellipse4557"
+         cx="65.448662"
+         cy="59.792397"
+         rx="12.473214"
+         ry="16.441963"
+         transform="matrix(0.43496905,0.1872365,-0.1872365,0.43496905,77.221219,41.401466)" />
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:5.84155512px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.14603887"
+       x="16.057911"
+       y="54.611336"
+       id="text4563"><tspan
+         sodipodi:role="line"
+         id="tspan4561"
+         x="16.057911"
+         y="54.611336"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Georgia;-inkscape-font-specification:Georgia;stroke-width:0.14603887">Intention space X</tspan></text>
+    <text
+       id="text4567"
+       y="103.00966"
+       x="31.392134"
+       style="font-style:normal;font-weight:normal;font-size:5.84155512px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#329d37;fill-opacity:0.78431373;stroke:none;stroke-width:0.14603887"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Georgia;-inkscape-font-specification:Georgia;fill:#329d37;fill-opacity:0.78431373;stroke-width:0.14603887"
+         y="103.00966"
+         x="31.392134"
+         id="tspan4565"
+         sodipodi:role="line">Belief P(X)</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:3.78171539px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ac4937;fill-opacity:1;stroke:none;stroke-width:0.09454289"
+       x="21.890881"
+       y="68.93232"
+       id="text4571"><tspan
+         sodipodi:role="line"
+         id="tspan4569"
+         x="21.890881"
+         y="68.93232"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Georgia;-inkscape-font-specification:Georgia;fill:#ac4937;fill-opacity:1;stroke-width:0.09454289">Specific intention X<tspan
+   style="font-size:2.45811486px;baseline-shift:sub;stroke-width:0.09454289"
+   id="tspan11090">1</tspan></tspan></text>
+    <text
+       id="text4583"
+       y="75.022049"
+       x="72.66819"
+       style="font-style:normal;font-weight:normal;font-size:5.84155512px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.14603887"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Georgia;-inkscape-font-specification:Georgia;stroke-width:0.14603887"
+         y="75.022049"
+         x="72.66819"
+         id="tspan4581"
+         sodipodi:role="line">Evidence Y</tspan></text>
+    <g
+       id="g11084"
+       transform="matrix(0.66699072,0,0,0.66699072,28.917315,26.014211)">
+      <g
+         style="stroke-width:0.5;stroke-miterlimit:4;stroke-dasharray:none"
+         id="g11070">
+        <path
+           sodipodi:nodetypes="cc"
+           style="fill:none;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="M 82.020832,86.089285 H 95.675221"
+           id="path11064"
+           inkscape:connector-curvature="0" />
+        <path
+           sodipodi:nodetypes="cc"
+           style="fill:none;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="m 90.336308,80.703123 7.559524,7.559524"
+           id="path11066"
+           inkscape:connector-curvature="0" />
+      </g>
+      <g
+         style="stroke-width:0.5;stroke-miterlimit:4;stroke-dasharray:none"
+         transform="matrix(1,0,0,-1,0,176.52529)"
+         id="g11076">
+        <path
+           sodipodi:nodetypes="cc"
+           inkscape:connector-curvature="0"
+           id="path11072"
+           d="M 82.020832,86.089285 H 95.675221"
+           style="fill:none;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+        <path
+           sodipodi:nodetypes="cc"
+           inkscape:connector-curvature="0"
+           id="path11074"
+           d="m 90.336308,80.703123 7.559524,7.55952"
+           style="fill:none;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      </g>
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:5.84155512px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#329d37;fill-opacity:0.78431373;stroke:none;stroke-width:0.14603887"
+       x="126.94099"
+       y="103.00966"
+       id="text11088"><tspan
+         sodipodi:role="line"
+         id="tspan11086"
+         x="126.94099"
+         y="103.00966"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Georgia;-inkscape-font-specification:Georgia;fill:#329d37;fill-opacity:0.78431373;stroke-width:0.14603887">Belief P(X|Y)</tspan></text>
+  </g>
+</svg>
