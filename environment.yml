@@ -16,5 +16,4 @@ dependencies:
     - gpy
     - gpyopt
     - gym
-
-  
+    - jupyter
