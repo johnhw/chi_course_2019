@@ -14,7 +14,7 @@
 ----
 
 ## [Launch the notebooks on Binder](http://beta.mybinder.org/v2/gh/johnhw/chi_course_2019/master)
-
+No need to install anything: thanks to the amazing [Binder](https://mybinder.org/) service, you can open and run these notebooks directly on the web. Just click the link above to launch a VM.
 
 ## Notebooks
 
@@ -39,7 +39,7 @@ The following faculty members will teach the course:
 ## Local install instructions
 If you are not using `mybinder.org`, then you can download and install a local version:
 
-* [Install Anaconda 3.7 for your platform](https://www.anaconda.com/distribution/) if you don't already have it installed
+* [Install Anaconda 3.6 for your platform](https://www.anaconda.com/distribution/) if you don't already have it installed (note Python 3.7 currently has a conflict with `gpyopt`)
 
 * Clone the repository somewhere on your machine
 
@@ -54,6 +54,7 @@ If you are not using `mybinder.org`, then you can download and install a local v
 * Install the prerequisites with 
     
         conda env export --no-builds -f environment.yml
+        
 * Start the notebook server with 
 
       jupyter notebook
