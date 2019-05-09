@@ -45,15 +45,14 @@ If you are not using `mybinder.org`, then you can download and install a local v
 
         git clone https://github.com/johnhw/chi_course_2019.git
 
-* At the terminal, create a new conda environment and activate it with
+* At the terminal, enter the directory where you cloned the repo
+* Create a new conda environment with the prerequisites
 
-        conda create -n chi-course-2019
+        conda env create -f environment.yml
+
+* Activate the environment with
+
         conda activate chi-course-2019
-        
-* Enter the directory where you cloned the repo
-* Install the prerequisites with 
-    
-        conda env export --no-builds -f environment.yml
         
 * Start the notebook server with 
 
